@@ -4,13 +4,28 @@ import { useState } from 'react';
 const Login = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
-
+    
     const handleSubmit = (e: any) => {
-        // POST
-
         e.preventDefault();
+        
+        fetch('http://127.0.0.1:5500', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id_emp: id, password: password })
+        })
+        .then(
+        // Fulfilled
+            () => {
+            console.log('Done')
+        // Rejected
+        }, () => {
+            console.log('Not done')
+        })
 
-        alert(`Employee ${id} with password ${password}`);
+
+        // alert(`Employee ${id} with password ${password}`);
     }
 
     const handleUserId = (e: any) => setId(e.target.value)
