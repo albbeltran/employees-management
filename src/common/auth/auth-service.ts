@@ -1,15 +1,16 @@
-import { IAuthService } from "./IAuthService";
-
 // using jwt package to create and manage JSON Web Token
 import jwt from 'jsonwebtoken';
 // using bcrypt package to hash passwords
 import bcrypt from 'bcryptjs';
 
+import { IAuthService } from "./IAuthService";
+import { config } from '../../platform/index';
+
 export class AuthService implements IAuthService {
 
     // generate new JSON web token
     generateToken(data: any): any {
-        return jwt.sign({ data }, process.env.JWTSECRET, {
+        return jwt.sign({ data }, config.auth.secret, {
             expiresIn: "24h",
         });
     }
@@ -17,7 +18,7 @@ export class AuthService implements IAuthService {
     // verify existing JSON web token
     verifyToken(token: string): any {
         try {
-            return jwt.verify(token, process.env.JWTSECRET);
+            return jwt.verify(token, config.auth.secret);
         } catch (err) {
             return false;
         }
