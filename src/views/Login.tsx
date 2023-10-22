@@ -8,8 +8,6 @@ const Login = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
 
-        console.log(`Employee ${id} with password ${password}`);
-
         fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: {
@@ -21,12 +19,10 @@ const Login = () => {
             })
         })
             .then(
-                // Fulfilled
                 () => {
-                    console.log('Done')
-                    // Rejected
+                    // Next route
                 }, () => {
-                    console.log('Not done')
+                    alert('Incorrect data');
                 })
 
         // Reset form after submit
