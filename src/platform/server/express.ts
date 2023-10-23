@@ -3,10 +3,7 @@ import { IStartOptions } from "./types";
 
 // const express = require('express');
 import express, { Request, Response } from "express";
-const dotenv = require('dotenv');
 const cors = require('cors');
-
-dotenv.config();
 
 const app = express();
 
